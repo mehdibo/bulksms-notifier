@@ -44,14 +44,18 @@ final class BulksmsTransport extends AbstractTransport
         ];
         if ($this->shortcode !== NULL)
             $body['shortcode'] = $this->shortcode;
-        $endpoint = sprintf("https://%s//developer/sms/send", $this->getEndpoint());
+        $endpoint = sprintf("https://%s/developer/sms/send", $this->getEndpoint());
         $response = $this->client->request('POST', $endpoint, [
             'body' => $body,
         ]);
-        if ($response->getStatusCode() !== 200)
+        // We dont use $response->toArray() because the API always sends an html content type (even with Json)
+        $responseBody = trim($response->getContent());
+        $responseBody = json_decode($responseBody);
+        // We don't check for the status code because the API sucks and it always sends 200
+        if (!isset($responseBody->success) || $responseBody->success !== 1)
         {
-            $error = $response->toArray(false);
-            throw new TransportException('Unable to send the SMS: '.$error['error'].'', $response);
+            $error = $responseBody->error;
+            throw new TransportException('Unable to send the SMS: '.$error.'', $response);
         }
     }
 
