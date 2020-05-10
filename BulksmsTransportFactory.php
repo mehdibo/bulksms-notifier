@@ -16,9 +16,11 @@ class BulksmsTransportFactory extends AbstractTransportFactory
         return ['bulksms'];
     }
 
+    /**
+     * @return BulksmsTransport
+     */
     public function create(Dsn $dsn): TransportInterface
     {
-        // bulksms://token@default?shortcode=xxx
         $scheme = $dsn->getScheme();
         $token = $this->getUser($dsn);
         $shortcode = $dsn->getOption('shortcode');
