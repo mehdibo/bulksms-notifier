@@ -2,6 +2,8 @@
     "name": "mehdibo/bulksms-notifier",
     "description": "Symfony Bulksms Notifier Bridge",
     "type": "symfony-bridge",
+    "keywords": ["sms", "bulksms", "notifier"],
+    "homepage": "https://github.com/mehdibo/bulksms-notifier",
     "license": "MIT",
     "authors": [
         {
