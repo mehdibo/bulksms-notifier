@@ -13,8 +13,8 @@
     ],
     "require": {
       "php": "^7.4",
-      "symfony/http-client": "^5.1",
-      "symfony/notifier": "^5.1",
+      "symfony/http-client": "^5.2",
+      "symfony/notifier": "^5.2",
       "ext-json": "*"
     },
     "autoload": {
